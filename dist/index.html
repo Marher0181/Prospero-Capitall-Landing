@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prospero Capital - Selecciona tu País</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --jade-dark: #0d3b2e;
+            --jade-primary: #1a5f4a;
+            --jade-medium: #2d8a6b;
+            --jade-light: #4db88a;
+            --jade-pale: #7dd4a8;
+            --white: #ffffff;
+            --off-white: #f8faf9;
+            --gray-100: #f0f4f2;
+            --gray-200: #d1dcd6;
+            --gray-600: #5a7369;
+            --gray-800: #2d4a40;
+            --gold: #c9a227;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+            background: linear-gradient(135deg, var(--jade-dark) 0%, var(--jade-primary) 50%, var(--jade-medium) 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Background Image */
+        .bg-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('./images/hero-bg.jpg') center/cover;
+            opacity: 0.3;
+            z-index: 0;
+        }
+
+        /* Particle background */
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.4);
+            border-radius: 50%;
+            animation: float 15s infinite;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        /* Noise overlay */
+        .noise-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.03;
+            z-index: 1;
+            pointer-events: none;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+
+        .container {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            padding: 2rem;
+            max-width: 1200px;
+            width: 100%;
+        }
+
+        .logo {
+            margin-bottom: 1rem;
+        }
+
+        .logo-icon {
+            width: 90px;
+            height: 90px;
+            background: linear-gradient(135deg, var(--white) 0%, var(--jade-pale) 100%);
+            border-radius: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            box-shadow: 0 20px 60px rgba(26, 95, 74, 0.4);
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+                box-shadow: 0 20px 60px rgba(26, 95, 74, 0.4);
+            }
+            50% {
+                transform: scale(1.05);
+                box-shadow: 0 25px 70px rgba(26, 95, 74, 0.6);
+            }
+        }
+
+        .logo-icon svg {
+            width: 50px;
+            height: 50px;
+            color: var(--jade-primary);
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
+            color: var(--white);
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.02em;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .subtitle {
+            font-size: clamp(1.1rem, 2vw, 1.4rem);
+            color: rgba(255, 255, 255, 0.85);
+            margin-bottom: 1rem;
+            font-weight: 300;
+        }
+
+        .domain {
+            font-size: 1rem;
+            color: var(--jade-pale);
+            margin-bottom: 4rem;
+            font-weight: 500;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+        }
+
+        .flags-container {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .flag-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            border-radius: 24px;
+            padding: 2.5rem;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            text-decoration: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+            min-width: 200px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .flag-card:hover {
+            background: var(--white);
+            border-color: var(--jade-light);
+            transform: translateY(-12px) scale(1.03);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .flag {
+            width: 120px;
+            height: 80px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s ease;
+        }
+
+        .flag-card:hover .flag {
+            transform: scale(1.08);
+        }
+
+        .flag img, .flag svg {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .flag-name {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--jade-dark);
+        }
+
+        .flag-language {
+            font-size: 0.875rem;
+            color: var(--jade-medium);
+            font-weight: 500;
+        }
+
+        .footer {
+            position: absolute;
+            bottom: 2rem;
+            left: 0;
+            right: 0;
+            text-align: center;
+            z-index: 2;
+        }
+
+        .footer p {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.875rem;
+        }
+
+        @media (max-width: 768px) {
+            .flags-container {
+                gap: 1.5rem;
+            }
+
+            .flag-card {
+                padding: 1.5rem;
+                min-width: 150px;
+            }
+
+            .flag {
+                width: 90px;
+                height: 60px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-image"></div>
+    <div class="particles" id="particles"></div>
+    <div class="noise-overlay"></div>
+
+    <div class="container">
+        <div class="logo">
+            <div class="logo-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                    <path d="M2 17l10 5 10-5"/>
+                    <path d="M2 12l10 5 10-5"/>
+                </svg>
+            </div>
+            <h1>Prospero Capital</h1>
+            <p class="subtitle">Grupo Empresarial</p>
+            <p class="domain">www.prosperocapitall.com</p>
+        </div>
+
+        <div class="flags-container">
+            <a href="./us/" class="flag-card">
+                <div class="flag">
+                    <svg viewBox="0 0 190 100" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="190" height="100" fill="#B22234"/>
+                        <rect y="7.69" width="190" height="7.69" fill="white"/>
+                        <rect y="23.08" width="190" height="7.69" fill="white"/>
+                        <rect y="38.46" width="190" height="7.69" fill="white"/>
+                        <rect y="53.85" width="190" height="7.69" fill="white"/>
+                        <rect y="69.23" width="190" height="7.69" fill="white"/>
+                        <rect y="84.62" width="190" height="7.69" fill="white"/>
+                        <rect width="76" height="53.85" fill="#3C3B6E"/>
+                    </svg>
+                </div>
+                <span class="flag-name">United States</span>
+                <span class="flag-language">English</span>
+            </a>
+
+            <a href="./co/" class="flag-card">
+                <div class="flag">
+                    <svg viewBox="0 0 150 100" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="150" height="50" fill="#FCD116"/>
+                        <rect y="50" width="150" height="25" fill="#003893"/>
+                        <rect y="75" width="150" height="25" fill="#CE1126"/>
+                    </svg>
+                </div>
+                <span class="flag-name">Colombia</span>
+                <span class="flag-language">Español</span>
+            </a>
+
+            <a href="./gt/" class="flag-card">
+                <div class="flag">
+                    <svg viewBox="0 0 160 100" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="160" height="100" fill="#4997D0"/>
+                        <rect x="53.33" width="53.33" height="100" fill="white"/>
+                    </svg>
+                </div>
+                <span class="flag-name">Guatemala</span>
+                <span class="flag-language">Español</span>
+            </a>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>&copy; 2026 Prospero Capital. Todos los derechos reservados.</p>
+    </div>
+
+    <script>
+        // Create floating particles
+        const particlesContainer = document.getElementById('particles');
+        const particleCount = 50;
+
+        for (let i = 0; i < particleCount; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.animationDelay = Math.random() * 15 + 's';
+            particle.style.animationDuration = (10 + Math.random() * 10) + 's';
+            particlesContainer.appendChild(particle);
+        }
+    </script>
+</body>
+</html>
