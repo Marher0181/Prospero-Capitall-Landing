@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>Prospero Capital - Contacto</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- Librería para banderas y selector de teléfono -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css"/>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --jade-dark: #0d3b2e;
+            --jade-primary: #1a5f4a;
+            --jade-medium: #2d8a6b;
+            --jade-light: #4db88a;
+            --jade-pale: #7dd4a8;
+            --white: #ffffff;
+            --off-white: #f8faf9;
+            --gray-100: #f0f4f2;
+            --gray-200: #d1dcd6;
+            --gray-600: #5a7369;
+            --gray-800: #2d4a40;
+            --gold: #c9a227;
+            --error: #e74c3c;
+            --success: #27ae60;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+            background: linear-gradient(135deg, var(--jade-dark) 0%, var(--jade-primary) 50%, var(--jade-medium) 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding: 1rem;
+            overflow-x: hidden;
+        }
+
+        /* Background Image */
+        .bg-image {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('./images/hero-bg.jpg') center/cover;
+            opacity: 0.3;
+            z-index: 0;
+        }
+
+        /* Particle background */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.4);
+            border-radius: 50%;
+            animation: float 15s infinite;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        /* Noise overlay */
+        .noise-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.03;
+            z-index: 1;
+            pointer-events: none;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+
+        .container {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            padding: 1.5rem 1rem;
+            max-width: 700px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        .logo {
+            margin-bottom: 1rem;
+        }
+
+        .logo-icon {
+            width: min(70px, 15vw);
+            height: min(70px, 15vw);
+            background: linear-gradient(135deg, var(--white) 0%, var(--jade-pale) 100%);
+            border-radius: min(20px, 4vw);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            box-shadow: 0 20px 60px rgba(26, 95, 74, 0.4);
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+                box-shadow: 0 20px 60px rgba(26, 95, 74, 0.4);
+            }
+            50% {
+                transform: scale(1.05);
+                box-shadow: 0 25px 70px rgba(26, 95, 74, 0.6);
+            }
+        }
+
+        .logo-icon svg {
+            width: 55%;
+            height: 55%;
+            color: var(--jade-primary);
+        }
+
+        h1 {
+            font-size: clamp(2rem, 7vw, 2.8rem);
+            font-weight: 800;
+            color: var(--white);
+            margin-bottom: 0.25rem;
+            letter-spacing: -0.02em;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            line-height: 1.2;
+        }
+
+        .subtitle {
+            font-size: clamp(1rem, 3.5vw, 1.2rem);
+            color: rgba(255, 255, 255, 0.85);
+            margin-bottom: 2rem;
+            font-weight: 300;
+        }
+
+        /* Formulario */
+        .contact-form {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            border-radius: 24px;
+            padding: 2.5rem;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+            text-align: left;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--jade-dark);
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 1rem;
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            border: 2px solid var(--gray-200);
+            border-radius: 12px;
+            background: var(--white);
+            color: var(--jade-dark);
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--jade-light);
+            box-shadow: 0 0 0 4px rgba(77, 184, 138, 0.1);
+        }
+
+        .form-control::placeholder {
+            color: var(--gray-400);
+            opacity: 0.7;
+        }
+
+        /* Campo de teléfono */
+        .phone-input-container {
+            position: relative;
+            width: 100%;
+        }
+
+        .iti {
+            width: 100%;
+        }
+
+        .iti__flag-container {
+            z-index: 10;
+        }
+
+        .iti__selected-flag {
+            background: transparent !important;
+            border-radius: 12px 0 0 12px;
+            padding: 0 6px 0 12px;
+        }
+
+        .iti__selected-flag:hover,
+        .iti__selected-flag:focus {
+            background: rgba(77, 184, 138, 0.1) !important;
+        }
+
+        .iti__country-list {
+            border-radius: 12px;
+            border: 2px solid var(--gray-200);
+            font-family: 'Inter', sans-serif;
+            max-height: 200px;
+        }
+
+        .iti__country.iti__highlight {
+            background: rgba(77, 184, 138, 0.1);
+        }
+
+        .iti__country-name {
+            color: var(--jade-dark);
+        }
+
+        .iti__dial-code {
+            color: var(--gray-600);
+        }
+
+        /* Mensaje */
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        /* Botón de envío */
+        .submit-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            width: 100%;
+            padding: 1.25rem 2rem;
+            background: linear-gradient(135deg, var(--jade-primary) 0%, var(--jade-medium) 100%);
+            color: var(--white);
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            margin-top: 1rem;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 20px 40px rgba(26, 95, 74, 0.4);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* Mensajes de estado */
+        .status-message {
+            padding: 1rem;
+            border-radius: 12px;
+            margin-bottom: 1.5rem;
+            font-weight: 500;
+            display: none;
+        }
+
+        .status-message.success {
+            background: rgba(39, 174, 96, 0.1);
+            border: 2px solid var(--success);
+            color: var(--success);
+            display: block;
+        }
+
+        .status-message.error {
+            background: rgba(231, 76, 60, 0.1);
+            border: 2px solid var(--error);
+            color: var(--error);
+            display: block;
+        }
+
+        /* Footer */
+        .footer {
+            position: relative;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            text-align: center;
+            z-index: 2;
+            margin-top: 2rem;
+            padding: 1rem;
+        }
+
+        .footer p {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: clamp(0.75rem, 3vw, 0.875rem);
+        }
+
+        /* Media Queries */
+        @media (max-width: 768px) {
+            body {
+                padding: 0.5rem;
+                justify-content: flex-start;
+            }
+
+            .container {
+                padding: 1rem 0.5rem;
+            }
+
+            .contact-form {
+                padding: 1.5rem;
+            }
+
+            .form-control {
+                padding: 0.875rem;
+            }
+
+            .submit-btn {
+                padding: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .contact-form {
+                padding: 1.25rem;
+            }
+
+            .form-label {
+                font-size: 0.8rem;
+            }
+        }
+
+        /* Soporte para hover solo en dispositivos que lo soportan */
+        @media (hover: hover) {
+            .submit-btn:hover {
+                transform: translateY(-3px);
+                box-shadow: 0 20px 40px rgba(26, 95, 74, 0.4);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-image"></div>
+    <div class="particles" id="particles"></div>
+    <div class="noise-overlay"></div>
+
+    <div class="container">
+        <div class="logo">
+            <div class="logo-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                    <path d="M2 17l10 5 10-5"/>
+                    <path d="M2 12l10 5 10-5"/>
+                </svg>
+            </div>
+            <h1>Contacto</h1>
+            <p class="subtitle">Déjanos tu mensaje y te responderemos pronto</p>
+        </div>
+
+        <div class="contact-form">
+            <div class="status-message" id="statusMessage"></div>
+            
+            <form id="contactForm" action="#" method="POST">
+                <div class="form-group">
+                    <label for="nombre" class="form-label">Nombre completo</label>
+                    <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Ej. Juan Pérez" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email" class="form-label">Correo electrónico</label>
+                    <input type="email" class="form-control" id="email" name="email" placeholder="ejemplo@correo.com" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="telefono" class="form-label">Teléfono</label>
+                    <div class="phone-input-container">
+                        <input type="tel" class="form-control" id="telefono" name="telefono" placeholder="Número de teléfono" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="mensaje" class="form-label">Mensaje</label>
+                    <textarea class="form-control" id="mensaje" name="mensaje" placeholder="Escribe tu mensaje aquí..." required></textarea>
+                </div>
+
+                <button type="submit" class="submit-btn" id="submitBtn">
+                    <span>Enviar mensaje</span>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="22" y1="2" x2="11" y2="13"/>
+                        <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+                    </svg>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>&copy; 2026 Prospero Capital. Todos los derechos reservados.</p>
+    </div>
+
+    <!-- Scripts para el selector de teléfono -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js"></script>
+    
+    <script>
+        // Crear partículas
+        const particlesContainer = document.getElementById('particles');
+        const particleCount = window.innerWidth <= 768 ? 20 : 30;
+
+        for (let i = 0; i < particleCount; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.animationDelay = Math.random() * 15 + 's';
+            particle.style.animationDuration = (10 + Math.random() * 10) + 's';
+            
+            if (window.innerWidth <= 768) {
+                particle.style.width = '2px';
+                particle.style.height = '2px';
+            }
+            
+            particlesContainer.appendChild(particle);
+        }
+
+        // Inicializar selector de teléfono
+        const phoneInput = document.querySelector("#telefono");
+        const iti = window.intlTelInput(phoneInput, {
+            initialCountry: "us",
+            preferredCountries: ["us", "co", "gt", "mx", "es"],
+            separateDialCode: true,
+            utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js"
+        });
+
+        // Actualizar el placeholder cuando cambie el país
+        phoneInput.addEventListener('countrychange', function() {
+            const countryData = iti.getSelectedCountryData();
+            phoneInput.placeholder = `Ej. ${countryData.dialCode} 123456789`;
+        });
+
+        // Manejar envío del formulario
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const submitBtn = document.getElementById('submitBtn');
+            const statusMessage = document.getElementById('statusMessage');
+            
+            // Validar teléfono
+            if (!iti.isValidNumber()) {
+                statusMessage.className = 'status-message error';
+                statusMessage.textContent = 'Por favor, ingresa un número de teléfono válido.';
+                return;
+            }
+            
+            // Obtener número completo con código de país
+            const phoneNumber = iti.getNumber();
+            
+            // Recoger datos del formulario
+            const formData = {
+                nombre: document.getElementById('nombre').value,
+                email: document.getElementById('email').value,
+                telefono: phoneNumber,
+                mensaje: document.getElementById('mensaje').value
+            };
+            
+            // Deshabilitar botón durante el envío
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<span>Enviando...</span>';
+            
+            // Configurar el envío del correo
+            // Usando mailto: como fallback (abre el cliente de correo del usuario)
+            const mailtoLink = `mailto:soluciones@prosperocapitall.com?subject=Contacto desde la web - ${formData.nombre}&body=${encodeURIComponent(
+                `Nombre: ${formData.nombre}\n` +
+                `Email: ${formData.email}\n` +
+                `Teléfono: ${formData.telefono}\n\n` +
+                `Mensaje:\n${formData.mensaje}`
+            )}`;
+            
+            // También podrías enviar a un servidor usando fetch
+            // Aquí simulamos un envío exitoso y abrimos el cliente de correo
+            setTimeout(() => {
+                statusMessage.className = 'status-message success';
+                statusMessage.textContent = '¡Mensaje enviado! Abriendo tu cliente de correo...';
+                
+                // Abrir cliente de correo
+                window.location.href = mailtoLink;
+                
+                // Resetear formulario después de 2 segundos
+                setTimeout(() => {
+                    document.getElementById('contactForm').reset();
+                    iti.setNumber(''); // Limpiar campo de teléfono
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = '<span>Enviar mensaje</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>';
+                    
+                    // Ocultar mensaje después de 5 segundos
+                    setTimeout(() => {
+                        statusMessage.style.display = 'none';
+                        statusMessage.className = 'status-message';
+                    }, 5000);
+                }, 2000);
+            }, 1000);
+        });
+
+        // Ajustar partículas al cambiar tamaño de pantalla
+        window.addEventListener('resize', function() {
+            const particles = document.querySelectorAll('.particle');
+            if (window.innerWidth <= 768) {
+                particles.forEach(p => {
+                    p.style.width = '2px';
+                    p.style.height = '2px';
+                });
+            } else {
+                particles.forEach(p => {
+                    p.style.width = '4px';
+                    p.style.height = '4px';
+                });
+            }
+        });
+    </script>
+</body>
+</html>
