@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
     <title>Prospero Capital - Selecciona tu País</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -37,13 +37,14 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            overflow: hidden;
             position: relative;
+            padding: 1rem;
+            overflow-x: hidden;
         }
 
         /* Background Image */
         .bg-image {
-            position: absolute;
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
@@ -55,13 +56,14 @@
 
         /* Particle background */
         .particles {
-            position: absolute;
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             overflow: hidden;
             z-index: 1;
+            pointer-events: none;
         }
 
         .particle {
@@ -92,7 +94,7 @@
 
         /* Noise overlay */
         .noise-overlay {
-            position: absolute;
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
@@ -107,20 +109,21 @@
             position: relative;
             z-index: 2;
             text-align: center;
-            padding: 2rem;
+            padding: 1.5rem 1rem;
             max-width: 1200px;
             width: 100%;
+            margin: 0 auto;
         }
 
         .logo {
-            margin-bottom: 1rem;
+            margin-bottom: 2rem;
         }
 
         .logo-icon {
-            width: 90px;
-            height: 90px;
+            width: min(90px, 20vw);
+            height: min(90px, 20vw);
             background: linear-gradient(135deg, var(--white) 0%, var(--jade-pale) 100%);
-            border-radius: 24px;
+            border-radius: min(24px, 5vw);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -141,41 +144,47 @@
         }
 
         .logo-icon svg {
-            width: 50px;
-            height: 50px;
+            width: 55%;
+            height: 55%;
             color: var(--jade-primary);
         }
 
         h1 {
-            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-size: clamp(2rem, 8vw, 4rem);
             font-weight: 800;
             color: var(--white);
             margin-bottom: 0.5rem;
             letter-spacing: -0.02em;
             text-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            line-height: 1.2;
+            padding: 0 0.5rem;
         }
 
         .subtitle {
-            font-size: clamp(1.1rem, 2vw, 1.4rem);
+            font-size: clamp(1rem, 4vw, 1.4rem);
             color: rgba(255, 255, 255, 0.85);
-            margin-bottom: 1rem;
+            margin-bottom: 0.75rem;
             font-weight: 300;
         }
 
         .domain {
-            font-size: 1rem;
+            font-size: clamp(0.75rem, 3vw, 1rem);
             color: var(--jade-pale);
-            margin-bottom: 4rem;
+            margin-bottom: 3rem;
             font-weight: 500;
             letter-spacing: 0.15em;
             text-transform: uppercase;
+            word-break: break-word;
+            padding: 0 0.5rem;
         }
 
         .flags-container {
             display: flex;
             justify-content: center;
-            gap: 3rem;
+            gap: 2rem;
             flex-wrap: wrap;
+            margin: 0 auto;
+            max-width: 100%;
         }
 
         .flag-card {
@@ -183,15 +192,16 @@
             backdrop-filter: blur(10px);
             border: 2px solid rgba(255, 255, 255, 0.5);
             border-radius: 24px;
-            padding: 2.5rem;
+            padding: 2rem 1.5rem;
             cursor: pointer;
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             text-decoration: none;
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 1.5rem;
-            min-width: 200px;
+            gap: 1rem;
+            min-width: 180px;
+            flex: 0 1 auto;
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
         }
 
@@ -200,6 +210,13 @@
             border-color: var(--jade-light);
             transform: translateY(-12px) scale(1.03);
             box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Active/Tap state for mobile */
+        .flag-card:active {
+            transform: scale(0.98);
+            background: var(--white);
+            border-color: var(--jade-light);
         }
 
         .flag {
@@ -219,6 +236,7 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+            display: block;
         }
 
         .flag-name {
@@ -234,32 +252,194 @@
         }
 
         .footer {
-            position: absolute;
-            bottom: 2rem;
+            position: relative;
+            bottom: 0;
             left: 0;
             right: 0;
             text-align: center;
             z-index: 2;
+            margin-top: 3rem;
+            padding: 1rem;
         }
 
         .footer p {
             color: rgba(255, 255, 255, 0.6);
-            font-size: 0.875rem;
+            font-size: clamp(0.75rem, 3vw, 0.875rem);
         }
 
+        /* Media Queries para móviles */
         @media (max-width: 768px) {
+            body {
+                padding: 0.5rem;
+                justify-content: flex-start;
+                min-height: 100vh;
+                overflow-y: auto;
+            }
+
+            .container {
+                padding: 1rem 0.5rem;
+            }
+
+            .logo {
+                margin-bottom: 1.5rem;
+            }
+
+            .logo-icon {
+                width: min(70px, 18vw);
+                height: min(70px, 18vw);
+                margin-bottom: 1rem;
+            }
+
+            h1 {
+                font-size: clamp(1.8rem, 7vw, 2.5rem);
+                margin-bottom: 0.25rem;
+            }
+
+            .subtitle {
+                font-size: clamp(0.9rem, 3.5vw, 1.2rem);
+                margin-bottom: 0.5rem;
+            }
+
+            .domain {
+                font-size: clamp(0.7rem, 2.5vw, 0.9rem);
+                margin-bottom: 2rem;
+                letter-spacing: 0.1em;
+            }
+
+            .flags-container {
+                gap: 1rem;
+                flex-direction: column;
+                align-items: center;
+                width: 100%;
+                max-width: 400px;
+                margin: 0 auto;
+            }
+
+            .flag-card {
+                width: 100%;
+                max-width: 280px;
+                padding: 1.5rem 1rem;
+                min-width: unset;
+                flex-direction: row;
+                justify-content: flex-start;
+                gap: 1rem;
+                border-radius: 20px;
+            }
+
+            .flag {
+                width: 70px;
+                height: 47px;
+                min-width: 70px;
+                border-radius: 8px;
+            }
+
+            .flag-info {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.25rem;
+            }
+
+            .flag-name {
+                font-size: 1.1rem;
+            }
+
+            .flag-language {
+                font-size: 0.8rem;
+            }
+
+            .footer {
+                margin-top: 2rem;
+                position: relative;
+                padding: 0.5rem;
+            }
+        }
+
+        /* Pantallas muy pequeñas */
+        @media (max-width: 360px) {
+            .flag-card {
+                max-width: 240px;
+                padding: 1rem;
+            }
+
+            .flag {
+                width: 60px;
+                height: 40px;
+                min-width: 60px;
+            }
+
+            .flag-name {
+                font-size: 1rem;
+            }
+        }
+
+        /* Orientación landscape en móviles */
+        @media (max-height: 600px) and (orientation: landscape) {
+            body {
+                justify-content: center;
+            }
+
+            .container {
+                padding: 0.5rem;
+            }
+
+            .logo-icon {
+                width: 50px;
+                height: 50px;
+                margin-bottom: 0.5rem;
+            }
+
+            h1 {
+                font-size: 1.8rem;
+                margin-bottom: 0.1rem;
+            }
+
+            .subtitle {
+                font-size: 0.9rem;
+                margin-bottom: 0.2rem;
+            }
+
+            .domain {
+                margin-bottom: 1rem;
+                font-size: 0.7rem;
+            }
+
+            .flags-container {
+                flex-direction: row;
+                gap: 1rem;
+            }
+
+            .flag-card {
+                width: auto;
+                min-width: 140px;
+                padding: 1rem;
+            }
+        }
+
+        /* Ajustes para tablets */
+        @media (min-width: 769px) and (max-width: 1024px) {
             .flags-container {
                 gap: 1.5rem;
             }
 
             .flag-card {
+                min-width: 160px;
                 padding: 1.5rem;
-                min-width: 150px;
             }
 
             .flag {
-                width: 90px;
-                height: 60px;
+                width: 100px;
+                height: 67px;
+            }
+        }
+
+        /* Soporte para hover solo en dispositivos que lo soportan */
+        @media (hover: hover) {
+            .flag-card:hover {
+                background: var(--white);
+                border-color: var(--jade-light);
+                transform: translateY(-12px) scale(1.03);
+                box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
             }
         }
     </style>
@@ -297,8 +477,10 @@
                         <rect width="76" height="53.85" fill="#3C3B6E"/>
                     </svg>
                 </div>
-                <span class="flag-name">United States</span>
-                <span class="flag-language">English</span>
+                <div class="flag-info">
+                        <span class="flag-name">Estados Unidos</span>
+                    <span class="flag-language">Español</span>
+                </div>
             </a>
 
             <a href="./co/" class="flag-card">
@@ -309,8 +491,10 @@
                         <rect y="75" width="150" height="25" fill="#CE1126"/>
                     </svg>
                 </div>
-                <span class="flag-name">Colombia</span>
-                <span class="flag-language">Español</span>
+                <div class="flag-info">
+                    <span class="flag-name">Colombia</span>
+                    <span class="flag-language">Español</span>
+                </div>
             </a>
 
             <a href="./gt/" class="flag-card">
@@ -320,8 +504,10 @@
                         <rect x="53.33" width="53.33" height="100" fill="white"/>
                     </svg>
                 </div>
-                <span class="flag-name">Guatemala</span>
-                <span class="flag-language">Español</span>
+                <div class="flag-info">
+                    <span class="flag-name">Guatemala</span>
+                    <span class="flag-language">Español</span>
+                </div>
             </a>
         </div>
     </div>
@@ -333,7 +519,7 @@
     <script>
         // Create floating particles
         const particlesContainer = document.getElementById('particles');
-        const particleCount = 50;
+        const particleCount = 30; // Reducido para mejor rendimiento en móviles
 
         for (let i = 0; i < particleCount; i++) {
             const particle = document.createElement('div');
@@ -341,8 +527,31 @@
             particle.style.left = Math.random() * 100 + '%';
             particle.style.animationDelay = Math.random() * 15 + 's';
             particle.style.animationDuration = (10 + Math.random() * 10) + 's';
+            
+            // Partículas más pequeñas en móviles
+            if (window.innerWidth <= 768) {
+                particle.style.width = '2px';
+                particle.style.height = '2px';
+            }
+            
             particlesContainer.appendChild(particle);
         }
+
+        // Ajustar partículas al cambiar tamaño de pantalla
+        window.addEventListener('resize', function() {
+            const particles = document.querySelectorAll('.particle');
+            if (window.innerWidth <= 768) {
+                particles.forEach(p => {
+                    p.style.width = '2px';
+                    p.style.height = '2px';
+                });
+            } else {
+                particles.forEach(p => {
+                    p.style.width = '4px';
+                    p.style.height = '4px';
+                });
+            }
+        });
     </script>
 </body>
 </html>
