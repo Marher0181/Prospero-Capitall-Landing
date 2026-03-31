@@ -24,6 +24,7 @@
             --off-white: #f8faf9;
             --gray-100: #f0f4f2;
             --gray-200: #d1dcd6;
+            --gray-400: #8ba89c;
             --gray-600: #5a7369;
             --gray-800: #2d4a40;
             --construction: #e74c3c;
@@ -85,10 +86,16 @@
             color: var(--white);
         }
 
+        /* NUEVO: Estilos para el logo SVG grande */
         .logo-text {
-            font-size: 1.25rem;
-            font-weight: 700;
-            color: var(--jade-dark);
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-text svg {
+            height: 70px;
+            width: auto;
+            display: block;
         }
 
         .back-link {
@@ -407,10 +414,16 @@
             color: var(--jade-dark);
         }
 
+        /* NUEVO: Estilos para el logo SVG en footer */
         .footer-logo-text {
-            font-size: 1.125rem;
-            font-weight: 700;
-            color: var(--white);
+            display: flex;
+            align-items: center;
+        }
+
+        .footer-logo-text svg {
+            height: 50px;
+            width: auto;
+            display: block;
         }
 
         .footer-copyright {
@@ -427,6 +440,15 @@
                 flex-direction: column;
                 text-align: center;
             }
+
+            /* Ajustes responsive para el logo */
+            .logo-text svg {
+                height: 50px;
+            }
+            
+            .footer-logo-text svg {
+                height: 40px;
+            }
         }
     </style>
 </head>
@@ -435,14 +457,35 @@
     <nav class="navbar">
         <div class="navbar-content">
             <a href="../" class="logo">
-                <div class="logo-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M12 2L2 7l10 5 10-5-10-5z"/>
-                        <path d="M2 17l10 5 10-5"/>
-                        <path d="M2 12l10 5 10-5"/>
+                <span class="logo-text">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="200 550 1100 400" height="70" preserveAspectRatio="xMidYMid meet">
+                        <defs>
+                            <style>
+                                .logo-nav-cls-1 {
+                                    font-family: Georgia-Bold, Georgia;
+                                    font-size: 120px;
+                                    font-weight: 700;
+                                }
+                                .logo-nav-cls-1, .logo-nav-cls-2, .logo-nav-cls-3 {
+                                    fill: #00a86b ;
+                                }
+                                .logo-nav-cls-3 {
+                                    stroke: #00a86b;
+                                    stroke-miterlimit: 10;
+                                }
+                            </style>
+                        </defs>
+                        <g>
+                            <path class="logo-nav-cls-3" d="M391.15,825.05c-1.18,13.49-5.22,17.19-16.68,25.29h16.71s-.03-25.29-.03-25.29Z"/>
+                            <path class="logo-nav-cls-2" d="M397.72,740.01c4.43-8.52,19.9-31.66,30.65-35.9,24.82-9.79,42.52,2.53,47.74,6.9-2.34-.47-17.15-5.25-37.28.28-8.58,2.35-20.05,8.66-42.04,35.73-1.5.91-2.62,2.34-3.37,3.56v-83.78c.13-.01.23-.07.22-.24-.09-1.36.1-4.69.75-7.78,22.32,6.23,35.4,4.93,49.52-12.35,19.44-23.8,12.84-61.04,50.71-50.07-92.06-26.66-113.54,31.93-106.75,58.38.72-8.27,2.26-20.46,15.6-34.86,6.54-7.06,19.68-14.75,41.06-17.69-2.02.4-21.01,9.93-35.46,22.57-7.22,6.31-15.76,15.7-20.27,32.32-1.39,4.11-2,7.59-2.05,8.84-.04.92.09.57.34.57l2.69.14h-2.82v55.26c-.65-1.09-1.61-2.38-2.92-3.27,0,0,0,0,.01,0-7.09-6.04-13.95-26.88-38.86-36.12-9.04-3.35-31.24-2.85-33.43-2.41,4.88-4.09,24.14-7.51,41.4-1.78,13.68,4.54,27.37,28.19,31.51,36.15-4.17-29.25-25.93-100.18-131.56-12.76,38.67-17.98,39.15,17.94,69.54,31.44,15.3,6.79,37.39,4.35,59.19-12.73,3.03,1.84,4.54,6.41,5.12,8.69v121.79h6.46v-92.8c.59-2.18,1.86-5.83,4.17-8,22.94,18.7,37.8,24.22,61.72,11.37,31.33-16.84,35.02-50.32,76.39-31.09-113-93.51-133.52-21.62-137.99,9.67Z"/>
+                            <path class="logo-nav-cls-3" d="M389.31,825.05c1.18,13.49,5.22,17.19,16.68,25.29h-16.71s.03-25.29.03-25.29Z"/>
+                        </g>
+                        <text class="logo-nav-cls-1" transform="translate(558.02 746.43) scale(.94 1)">
+                            <tspan x="0" y="0">PROSPERO </tspan>
+                            <tspan x="0" y="105">CAPITAL</tspan>
+                        </text>
                     </svg>
-                </div>
-                <span class="logo-text">Prospero Capital</span>
+                </span>
             </a>
             <a href="../" class="back-link">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -572,24 +615,45 @@
     <footer class="footer">
         <div class="footer-content">
             <div class="footer-logo">
-                <div class="footer-logo-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M12 2L2 7l10 5 10-5-10-5z"/>
-                        <path d="M2 17l10 5 10-5"/>
-                        <path d="M2 12l10 5 10-5"/>
+                <span class="footer-logo-text">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="200 600 1100 400" height="50" preserveAspectRatio="xMidYMid meet">
+                        <defs>
+                            <style>
+                                .logo-footer-cls-1 {
+                                    font-family: Georgia-Bold, Georgia;
+                                    font-size: 120px;
+                                    font-weight: 700;
+                                }
+                                .logo-footer-cls-1, .logo-footer-cls-2, .logo-footer-cls-3 {
+                                    fill: #ffffff;
+                                }
+                                .logo-footer-cls-3 {
+                                    stroke: #ffffff;
+                                    stroke-miterlimit: 10;
+                                }
+                            </style>
+                        </defs>
+                        <g>
+                            <path class="logo-footer-cls-3" d="M391.15,825.05c-1.18,13.49-5.22,17.19-16.68,25.29h16.71s-.03-25.29-.03-25.29Z"/>
+                            <path class="logo-footer-cls-2" d="M397.72,740.01c4.43-8.52,19.9-31.66,30.65-35.9,24.82-9.79,42.52,2.53,47.74,6.9-2.34-.47-17.15-5.25-37.28.28-8.58,2.35-20.05,8.66-42.04,35.73-1.5.91-2.62,2.34-3.37,3.56v-83.78c.13-.01.23-.07.22-.24-.09-1.36.1-4.69.75-7.78,22.32,6.23,35.4,4.93,49.52-12.35,19.44-23.8,12.84-61.04,50.71-50.07-92.06-26.66-113.54,31.93-106.75,58.38.72-8.27,2.26-20.46,15.6-34.86,6.54-7.06,19.68-14.75,41.06-17.69-2.02.4-21.01,9.93-35.46,22.57-7.22,6.31-15.76,15.7-20.27,32.32-1.39,4.11-2,7.59-2.05,8.84-.04.92.09.57.34.57l2.69.14h-2.82v55.26c-.65-1.09-1.61-2.38-2.92-3.27,0,0,0,0,.01,0-7.09-6.04-13.95-26.88-38.86-36.12-9.04-3.35-31.24-2.85-33.43-2.41,4.88-4.09,24.14-7.51,41.4-1.78,13.68,4.54,27.37,28.19,31.51,36.15-4.17-29.25-25.93-100.18-131.56-12.76,38.67-17.98,39.15,17.94,69.54,31.44,15.3,6.79,37.39,4.35,59.19-12.73,3.03,1.84,4.54,6.41,5.12,8.69v121.79h6.46v-92.8c.59-2.18,1.86-5.83,4.17-8,22.94,18.7,37.8,24.22,61.72,11.37,31.33-16.84,35.02-50.32,76.39-31.09-113-93.51-133.52-21.62-137.99,9.67Z"/>
+                            <path class="logo-footer-cls-3" d="M389.31,825.05c1.18,13.49,5.22,17.19,16.68,25.29h-16.71s.03-25.29.03-25.29Z"/>
+                        </g>
+                        <text class="logo-footer-cls-1" transform="translate(558.02 746.43) scale(.94 1)">
+                            <tspan x="0" y="0">PROSPERO </tspan>
+                            <tspan x="0" y="105">CAPITAL</tspan>
+                        </text>
                     </svg>
-                </div>
-                <span class="footer-logo-text">Prospero Capital</span>
+                </span>
             </div>
-            <p class="footer-copyright">&copy; 2026 Prospero Capital USA. Todos los derechos reservados.</p>
+            <p class="footer-copyright">&copy; 2026 Prospero Capital Estados Unidos. Todos los derechos reservados.</p>
         </div>
     </footer>
-        <!-- Botón flotante de WhatsApp -->
+
+    <!-- Botón flotante de WhatsApp -->
     <a href="https://wa.me/50237344991?text=Hola%20Prospero%20Capital,%20me%20gustaría%20recibir%20información%20sobre%20sus%20servicios%20de%20inversión"
         class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Contactar por WhatsApp">
         <svg viewBox="0 0 24 24" width="32" height="32" fill="currentColor">
-            <path
-                d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.447-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.087-.177.181-.076.355.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86.174.087.276.072.376-.043.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087.159.058 1.011.477 1.184.564.173.087.289.13.332.202.043.072.043.419-.101.824z" />
+            <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.447-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.087-.177.181-.076.355.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86.174.087.276.072.376-.043.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087.159.058 1.011.477 1.184.564.173.087.289.13.332.202.043.072.043.419-.101.824z"/>
         </svg>
         <span class="whatsapp-tooltip">Chatea con nosotros</span>
     </a>
@@ -664,13 +728,10 @@
         }
 
         @keyframes pulse-whatsapp {
-
-            0%,
-            100% {
+            0%, 100% {
                 box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5);
                 transform: scale(1);
             }
-
             70% {
                 box-shadow: 0 0 0 20px rgba(37, 211, 102, 0);
                 transform: scale(1.05);
